@@ -1,33 +1,41 @@
-// object literals
-const myObject = {
-    name: "Bhaanoo Vishwakarma",
-    age: 30,
-    email: "bhaanoo@email.com",
-    education: "Btech ME"
-}   // This is object literals
-// const myString = '' || "" || ``   // This is String literals
+// Define the Stop object
+function Stop() {
+    this.start = null;  // start time
+    this.stop = null;   // stop time
+    this.duration = 0;  // duration between start and stop
 
-// const myBoolean = true / false    // This can also be written 
-// const myBoolean1 = new Boolean(true)
+    // Method to start the timer
+    this.startTimer = function() {
+        this.start = new Date(); // set start time
+    }
 
-// in this fash we can write all object
+    // Method to stop the timer
+    this.stopTimer = function() {
+        this.stop = new Date(); // set stop time
+        this.calculateDuration(); // calculate duration
+    }
 
-// how to create new Object
-// iterating over object we can do it by using dot notation or by bracket notation
+    // Method to calculate duration
+    this.calculateDuration = function() {
+        if (this.start && this.stop) {
+            this.duration = this.stop - this.start; // calculate duration
+        } else {
+            console.error("Cannot calculate duration. Start and/or stop time is not set.");
+        }
+    }
 
-// also we can delete an property from an object using
-// delete myObject.proprtyName  // this will delete proprtyName
-
-for (let key in myObject) {
-    console.log(key);
+    // Method to reset the timer
+    this.resetTimer = function() {
+        this.start = null;
+        this.stop = null;
+        this.duration = 0;
+    }
 }
 
-
-
-delete myObject.age;
-
-if ("age" in myObject) {
-    console.log("Hello Age is in myObject");
-} else {
-    console.log("no age is present anymore");
-}
+// Usage
+var stopwatch = new Stop(); // create a new instance of Stop object
+stopwatch.startTimer(); // start the timer
+setTimeout(function() {
+    stopwatch.stopTimer(); // stop the timer after 2 seconds
+    console.log("Duration:", stopwatch.duration + "ms");
+}, 2000);
