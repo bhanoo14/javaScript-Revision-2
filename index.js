@@ -39,3 +39,5 @@ setTimeout(function() {
     stopwatch.stopTimer(); // stop the timer after 2 seconds
     console.log("Duration:", stopwatch.duration + "ms");
 }, 2000);
+
+
